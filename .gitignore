@@ -133,6 +133,7 @@ dmypy.json
 *.pkl
 *.pickle
 *.model
+*.tar.gz
 
 # Ignore the Flickr Logos dataset
 data/flickr_logos_27_dataset/
