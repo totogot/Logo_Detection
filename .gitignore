@@ -136,4 +136,6 @@ dmypy.json
 *.tar.gz
 
 # Ignore the Flickr Logos dataset
-data/flickr_logos_27_dataset/
+data/Petronas_Logos/*
+*.png
+

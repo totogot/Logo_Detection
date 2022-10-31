@@ -1,12 +1,20 @@
-## Logo Detection
+# Logo Detection
 
 Repository showing a example project developed to perform logo detection in image frames. This project gives a view of how to leverage open-source packages to custome train a logo detection model and identify the presence of the logo in video imagery.
 
 The main.ipynb contains the run code, with accompanying commentary, while the sma package contains helper functions and wrappers.
 
-# Initial setup
-The first thing you are going to want to do is set up a virtual environment for installing all package requirements into
+This repo was used to train a Faster RCNN model using a custom tagged dataset of images featuring the Petronas company logo, before using the model to nfer the presence of the logo in a video of Formula 1 racing. The intention is to see how often the logo appears in the frames, and how much screen space the logo takes up.
 
+
+## Initial setup
+The first thing you are going to want to do is to clone this repository. To do this, you can use CLI to do the following:
+```
+$ cd C:\Users\jdoe\Documents\PersonalProjects
+$ git clone https://github.com/totogot/Logo_Detection.git
+```
+
+Next set up a virtual environment for installing all package requirements into
 ```
 $ cd C:\Users\jdoe\Documents\PersonalProjects\Logo_Detection
 $ python -m venv venv
@@ -22,22 +30,27 @@ $ pip install --upgrade pip
 $ pip install .
 ```
 
-This last command will install all dependencies outlined in the setup.cfg file. ipykernel has been included to enable the main.ipynb to be run also and for relevant visualisations to be outputted also.
+This last command will install all dependencies outlined in the setup.cfg file. 
+Note: ipykernel has been included to enable the main.ipynb to be run also and for relevant visualisations to be outputted also.
 
 
-# Loading data
+## Image data 
 
-This project was built using an open-source dataset with images containing company logos, with fine-grained (annotated, including bounding boxes) labelled data set to accompany. 
+This project was built using a custom made training dataset with 50 images containing the "Petronas" company logo, with fine-grained (annotated, including bounding boxes) labelled data obtained through manual tagging myself. 
 
-While this could be developed specifically for your custom task, I used the Flickr Logos dataset. There are several versions available (e.g. FlickrLogos 47, or 32), but the easiest to find online is the FlickrLogos27: http://image.ntua.gr/iva/datasets/flickr_logos/ (Y. Kalantidis, LG. Pueyo, M. Trevisiol, R. van Zwol, Y. Avrithis. Scalable Triangulation-based Logo Recognition. In Proceedings of ACM International Conference on Multimedia Retrieval (ICMR 2011), Trento, Italy, April 2011.)
+It is worth noting that 50 logos is unlikely to lead to a high degre of accuracy, and in the real world you would anticipate providing a far larged dataset during training in order to develop a robust and accurate model for deployment. However, for the purpose of showing an end to end project, and to reduce the time and compuational power required for training, I deemed 50 images as sufficient.
 
-You can download the dataset as a tar archive file, and move it to the "./data/" folder in this repository.
 
+## Labelling data
+
+To label the images myself, I decided to utilise LabelStudio (https://labelstud.io/), as it is a free open-source VoTT (Viual Object Tagging Tool), with simple download.
+
+To get started simply open up a terminal (in my case I use Windows Command Prompt), and execute the following commands:
 ```
-tar -xvzf .\data\flickr_logos_27_dataset.tar.gz -C .\data
+$ pip install label-studio
+$ label-studio start
 ```
 
-then unpack the images
-```
-tar -xvzf .\data\flickr_logos_27_dataset\flickr_logos_27_dataset_images.tar.gz -C .\data\flickr_logos_27_dataset
-```
+This will install the LabelStudio requirements and then launch the programme in a new browser window. From there you should set up your tagging task, following the instructions found here (https://labelstud.io/guide/index.html#Quick-start). Once you have completed your tagging task, you can export the annotated dataset (in one of many different formats). 
+
+For the purpose of this project, and to ensure that only one single annotation file is created, I opted for the COCO JSON format
