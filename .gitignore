@@ -135,7 +135,9 @@ dmypy.json
 *.model
 *.tar.gz
 
-# Ignore the Flickr Logos dataset
-data/Petronas_Logos/*
-*.png
-
+# Ignore the generated datasets
+data/videos/*
+yolov5/
+data/Label_Studio_Output/yolo_annotations/
+data/petronas_logo_detection
+*.pt

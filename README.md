@@ -4,7 +4,9 @@ Repository showing a example project developed to perform logo detection in imag
 
 The main.ipynb contains the run code, with accompanying commentary, while the sma package contains helper functions and wrappers.
 
-This repo was used to train a Faster RCNN model using a custom tagged dataset of images featuring the Petronas company logo, before using the model to nfer the presence of the logo in a video of Formula 1 racing. The intention is to see how often the logo appears in the frames, and how much screen space the logo takes up.
+This project makes use of the YOLO model architecture (using the Python implementation Ultralytics' YOLOv5 repo: https://github.com/ultralytics/yolov5). While this repor provides commentary and examples, for full YOLO documentation, I recommend viewing Ultralytics' GitHub.
+
+The model is custom trained using a manually tagged dataset of images featuring the Petronas company logo, before using the model to infer the presence of the logo in a video of Formula 1 racing. The intention is to see how often the logo appears in the frames, and how much screen space the logo takes up.
 
 
 ## Initial setup
@@ -36,9 +38,11 @@ Note: ipykernel has been included to enable the main.ipynb to be run also and fo
 
 ## Image data 
 
-This project was built using a custom made training dataset with 50 images containing the "Petronas" company logo, with fine-grained (annotated, including bounding boxes) labelled data obtained through manual tagging myself. 
+This project was built using a custom made dataset with 50 images containing the Petronas company logo, with fine-grained (annotated, including bounding boxes) labelled data obtained through manual tagging myself. 
 
-It is worth noting that 50 logos is unlikely to lead to a high degre of accuracy, and in the real world you would anticipate providing a far larged dataset during training in order to develop a robust and accurate model for deployment. However, for the purpose of showing an end to end project, and to reduce the time and compuational power required for training, I deemed 50 images as sufficient.
+It is worth noting that this volume of data is unlikely to lead to a high degree of accuracy, and in the real world you would anticipate providing a far larged dataset during training in order to develop a robust and accurate model for deployment - e.g. Ultralytics recommend >=1500 images per class (https://github.com/ultralytics/yolov5/wiki/Tips-for-Best-Training-Results). 
+
+However, for the purpose of showing an end to end project, and to reduce the time and compuational power required for training, I deemed 50 images as sufficient.
 
 
 ## Labelling data
